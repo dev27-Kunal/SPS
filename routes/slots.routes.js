@@ -28,8 +28,6 @@ const {
  *           schema:
  *             type: object
  *             properties:
- *               slotName:
- *                 type: string
  *               slotType:
  *                 type: string
  *               status:
@@ -43,6 +41,10 @@ const {
  *                     type: number
  *               parkingArea:
  *                 type: string
+ *               discountPrice:
+ *                 type: number
+ *               discountPercentage:
+ *                 type: number
  *               rate:
  *                 type: number
  *     responses:
