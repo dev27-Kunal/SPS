@@ -4,10 +4,9 @@ const mongoose = require("mongoose");
 
 const SlotSchema = new mongoose.Schema(
   {
-    slotName: {
-      type: String,
+    slotNumber: {
+      type: Number,
       required: true,
-      trim: true,
     },
     slotType: {
       type: String,
@@ -39,6 +38,14 @@ const SlotSchema = new mongoose.Schema(
       type: Number,
       required: true,
       min: 0,
+    },
+    discountPercentage: {
+      type: Number,
+      default: null
+    },
+    discountPrice: {
+      type: Number,
+      default: null
     },
     carDetails: {
       type: mongoose.Schema.Types.ObjectId,
