@@ -8,12 +8,13 @@ const ParkingHistory = require("../models/parkingHistory.model");
 const createSlot = async (req, res) => {
   try {
     const {
-      slotName,
       slotType,
       status,
       position, // { latitude, longitude }
       parkingArea,
       rate,
+      discountPrice,
+      discountPercentage,
       carDetails,
     } = req.body;
 
@@ -44,15 +45,24 @@ const createSlot = async (req, res) => {
         .json({ message: "Slot position is outside the parking area bounds" });
     }
 
+    const lastSlot = await Slot.find({ parkingArea })
+      .sort({ slotNumber: -1 })
+      .limit(1);
+
+    const slotNumber = lastSlot.length > 0 ? lastSlot[0].slotNumber + 1 : 1;
+
     const slot = new Slot({
-      slotName,
+      slotNumber,
       slotType,
       status,
       position,
       parkingArea,
       rate,
+      discountPrice,
+      discountPercentage,
       carDetails,
     });
+
 
     await slot.save();
 
